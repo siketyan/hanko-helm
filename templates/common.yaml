@@ -31,6 +31,7 @@
             password: '{{ .Values.postgresql.postgresPassword }}'
             host: '{{ .Release.Name }}-postgresql'
 {{- end -}}
+{{- $_ := mergeOverwrite .Values (include "hanko.values" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
