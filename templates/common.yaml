@@ -30,6 +30,20 @@ configmap:
           user: '{{ .Values.postgresql.postgresqlUsername }}'
           password: '{{ .Values.postgresql.postgresPassword }}'
           host: '{{ .Release.Name }}-postgresql'
+          port: 5432
+          dialect: postgres
+        passcode:
+          email:
+            from_address: no-reply@hanko.io
+          smtp:
+            host: smtp.example.com
+            user: example
+            password: example
+        secrets:
+          keys:
+            - abcedfghijklmnopqrstuvwxyz
+        service:
+          name: Hanko Authentication Service
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "hanko.hardcodedValues" . | fromYaml) -}}
 
