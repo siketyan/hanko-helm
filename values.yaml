@@ -1,0 +1,22 @@
+image:
+  repository: ghcr.io/teamhanko/hanko
+  tag: ~
+  pullPolicy: IfNotPresent
+
+service:
+  main:
+    ports:
+      http:
+        port: 8000
+
+postgresql:
+  # -- enable the bundled bitnami postgresql chart
+  enabled: false
+  postgresqlUsername: "hanko"
+  # postgresqlPassword: ""
+  postgresqlDatabase: "hanko"
+  # persistence:
+  #   enabled: true
+  #   storageClass:
+  #   accessModes:
+  #     - ReadWriteOnce

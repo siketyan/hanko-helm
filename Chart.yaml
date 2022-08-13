@@ -1,0 +1,37 @@
+apiVersion: v2
+type: application
+version: '0.1.0'
+appVersion: 'v0.1.1'
+name: hanko
+description: A passkey-first approach to authentication that takes you on the journey beyond passwords.
+icon: https://user-images.githubusercontent.com/20115649/176922819-61dfb644-529f-4f81-a577-7daa47185300.svg
+home: https://hanko.io/
+sources:
+  - https://github.com/siketyan/hanko-helm
+  - https://github.com/teamhanko/hanko
+keywords:
+  - authentication
+  - login
+  - biometrics
+  - jwt-auth
+  - passwordless
+  - touch-id
+  - webauthn
+  - face-id
+  - fido2
+  - windows-hello
+  - passkey
+  - passcodes
+  - passkeys
+maintainers:
+  - name: Naoki Ikeguchi
+    email: me@s6n.jp
+    url: https://github.com/siketyan
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.5.2
+  - name: postgresql
+    version: 10.16.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
