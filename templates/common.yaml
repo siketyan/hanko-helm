@@ -13,19 +13,19 @@ initContainers:
       - migrate
       - up
     volumeMounts:
-      - mountPath: /etc/config
+      - mountPath: /workspace/config
         name: config
 persistence:
   config:
     enabled: true
     type: configMap
     name: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
-    mountPath: /etc/config
+    mountPath: /workspace/config
 configmap:
   config:
     enabled: true
     data:
-      hanko-config.yaml: |-
+      config.yaml: |-
         database:
           user: '{{ .Values.postgresql.postgresqlUsername }}'
           password: '{{ .Values.postgresql.postgresPassword }}'
