@@ -28,7 +28,7 @@ configmap:
       config.yaml: |-
         database:
           user: '{{ .Values.postgresql.postgresqlUsername }}'
-          password: '{{ .Values.postgresql.postgresPassword }}'
+          password: '{{ .Values.postgresql.postgresqlPassword }}'
           host: '{{ .Release.Name }}-postgresql'
           port: 5432
           dialect: postgres
