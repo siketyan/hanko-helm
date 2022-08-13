@@ -13,14 +13,14 @@ initContainers:
       - migrate
       - up
     volumeMounts:
-      - mountPath: /workspace/config
-        name: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
+      - mountPath: /config
+        name: config
 persistence:
   config:
     enabled: true
     type: configMap
-    nameOverride: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
-    mountPath: /workspace/config
+    name: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
+    mountPath: /config
 configmap:
   config:
     enabled: true
