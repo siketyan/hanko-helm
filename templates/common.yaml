@@ -4,6 +4,7 @@
 {{- define "hanko.hardcodedValues" -}}
 args:
 - serve
+- all
 initContainers:
   migration:
     name: hanko-migrate
