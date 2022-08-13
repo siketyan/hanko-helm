@@ -2,34 +2,34 @@
 {{- include "common.values.setup" . }}
 
 {{- define "hanko.hardcodedValues" -}}
-  args:
-  - serve
-  initContainers:
-    migration:
-      name: hanko-migrate
-      image: {{ printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) | quote }}
-      imagePullPolicy: {{ .Values.image.pullPolicy }}
-      args:
-        - migrate
-        - up
-      volumeMounts:
-        - mountPath: /etc/config
-          name: config
-  persistence:
-    config:
-      enabled: true
-      type: configMap
-      name: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
-      mountPath: /etc/config
-  configmap:
-    config:
-      enabled: true
-      data:
-        hanko-config.yaml: |-
-          database:
-            user: '{{ .Values.postgresql.postgresqlUsername }}'
-            password: '{{ .Values.postgresql.postgresPassword }}'
-            host: '{{ .Release.Name }}-postgresql'
+args:
+- serve
+initContainers:
+  migration:
+    name: hanko-migrate
+    image: {{ printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) | quote }}
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    args:
+      - migrate
+      - up
+    volumeMounts:
+      - mountPath: /etc/config
+        name: config
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: '{{ printf "%v-config" (include "common.names.fullname" .) }}'
+    mountPath: /etc/config
+configmap:
+  config:
+    enabled: true
+    data:
+      hanko-config.yaml: |-
+        database:
+          user: '{{ .Values.postgresql.postgresqlUsername }}'
+          password: '{{ .Values.postgresql.postgresPassword }}'
+          host: '{{ .Release.Name }}-postgresql'
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "hanko.hardcodedValues" . | fromYaml) -}}
 
