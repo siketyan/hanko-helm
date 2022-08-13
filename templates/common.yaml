@@ -1,7 +1,7 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{- define "hanko.values" -}}
+{{- define "hanko.hardcodedValues" -}}
   args:
   - serve
   initContainers:
@@ -31,7 +31,7 @@
             password: '{{ .Values.postgresql.postgresPassword }}'
             host: '{{ .Release.Name }}-postgresql'
 {{- end -}}
-{{- $_ := mergeOverwrite .Values (include "hanko.values" . | fromYaml) -}}
+{{- $_ := mergeOverwrite .Values (include "hanko.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
